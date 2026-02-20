@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Itim&display=swap" rel="stylesheet">
+    <style>
+        * {
+            /* universal selector */
+            margin: 0;
+            padding: 0;
+            font-family: "Itim", cursive;
+        }
+
+        .container-primary {
+            /* class selector */
+            background-color: #043873;
+            color: white;
+            padding: 44px;
+            width: 342px;
+            border-radius: 10px;
+        }
+
+        .container-secondary {
+            background-color: white;
+            color: black;
+            padding: 44px;
+            width: 342px;
+            border-radius: 10px;
+            border: 2px solid #FFE492;
+        }
+
+        .container-primary>.top-section>.text,
+        .container-secondary>.top-section>.text {
+            display: block;
+            font-weight: bold;
+            font-size: xx-large;
+        }
+
+        .container-primary>.top-section>.text:nth-child(2) {
+            /* pseudo selector */
+            color: #FFE492;
+        }
+
+        .mid-section {}
+
+        .mid-section>.fet {}
+
+        .mid-section>.fet>img {
+            width: 20px;
+        }
+
+        .container-secondary>.mid-section>.fet>img {
+            filter: brightness(0);
+        }
+
+        .mid-section>.fet>span {}
+
+        #btn-primary {
+            /* id selector */
+            background-color: #4F9CF9;
+            color: white;
+            border: none;
+            font-size: larger;
+            padding: 10px 15px;
+            border-radius: 10px;
+        }
+
+        #btn-secondary {
+            background-color: white;
+            color: black;
+            border: 2px solid #FFE492;
+            font-size: larger;
+            padding: 10px 15px;
+            border-radius: 10px;
+        }
+    </style>
+</head>
+<!-- inline css, internal css, external css -->
+
+<body>
+
+
+    <div class="container-secondary">
+        <div class="top-section">
+            <span class="text">Free</span>
+            <span class="text">$0</span>
+            <span class="text">Capture ideas and find them quickly</span>
+        </div>
+
+
+        <div class="mid-section">
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+        </div>
+
+        <button id="btn-secondary">Get Started</button>
+
+
+    </div>
+    <div class="container-primary">
+        <div class="top-section">
+            <span class="text">Personal</span>
+            <span class="text">$11.99</span>
+            <span class="text">Keep home and family on track</span>
+        </div>
+
+
+        <div class="mid-section">
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+        </div>
+
+        <button id="btn-primary">Get Started</button>
+
+
+    </div>
+    <div class="container-secondary">
+        <div class="top-section">
+            <span class="text">Free</span>
+            <span class="text">$0</span>
+            <span class="text">Capture ideas and find them quickly</span>
+        </div>
+
+
+        <div class="mid-section">
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+            <div class="fet"><img src="Icon.png" alt=""><span>Sync unlimited devices</span></div>
+        </div>
+
+        <button id="btn-secondary">Get Started</button>
+
+
+    </div>
+
+
+</body>
+
+</html>
+<!-- https://www.figma.com/design/xmMReBdtULd5133IOHC4zC/Whitepace---SaaS-Landing-Page--Community- -->
