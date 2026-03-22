@@ -1,0 +1,192 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>EVolve · slot & charge</title>
+    <!-- Tailwind v4 CDN -->
+    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+    <!-- Google Fonts: Inter (modern, clean) -->
+    <link
+        href="https://fonts.googleapis.com/css2?family=Inter:opsz,wght@14..32,400;14..32,500;14..32,600;14..32,700&display=swap"
+        rel="stylesheet">
+    <style>
+        * {
+            font-family: 'Inter', system-ui, sans-serif;
+        }
+
+        body {
+            background-color: #0b0c0e;
+        }
+
+        /* custom subtle glow for cards */
+        .card-glow {
+            box-shadow: 0 8px 20px rgba(0, 0, 0, 0.6), 0 0 0 1px rgba(255, 255, 255, 0.02);
+        }
+
+        .hover-lift {
+            transition: transform 0.15s ease, box-shadow 0.2s ease;
+        }
+
+        .hover-lift:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 14px 26px -8px rgba(0, 200, 83, 0.2), 0 0 0 1px rgba(72, 255, 122, 0.15);
+        }
+    </style>
+</head>
+
+<body class="bg-[#0b0c0e] text-gray-200 antialiased overflow-hidden">
+
+    <!-- HEADER -->
+    <header class="bg-[#101112] border-b border-white/5 px-6 py-4 flex flex-wrap items-center justify-between gap-4">
+        <!-- logo -->
+        <div class="flex items-center gap-2">
+            <img src="./assets/logo.png" class="w-50" alt="">
+        </div>
+
+        <!-- search bar (refined) -->
+        <div class="relative w-full max-w-md">
+            <input
+                class="w-full bg-[#1e1f22] border border-white/5 rounded-xl py-2.5 pl-11 pr-4 text-sm text-white placeholder:text-gray-500 focus:outline-none focus:ring-2 focus:ring-emerald-700/50 transition"
+                type="text" placeholder="Search vehicle or slot...">
+            <img class="w-4 h-4 absolute left-4 top-3.5 opacity-50" src="./assets/search.png" alt="search">
+        </div>
+
+        <!-- action icons -->
+        <div class="flex items-center gap-2">
+            <button class="bg-[#1e1f22] hover:bg-[#2a2c30] p-2.5 rounded-xl border border-white/5 transition">
+                <img class="w-5 h-5 opacity-80" src="./assets/briefcase.png" alt="briefcase">
+            </button>
+            <button class="bg-[#1e1f22] hover:bg-[#2a2c30] p-2.5 rounded-xl border border-white/5 transition">
+                <img class="w-5 h-5 opacity-80" src="./assets/bell.png" alt="bell">
+            </button>
+            <button class="bg-[#1e1f22] hover:bg-[#2a2c30] p-2.5 rounded-xl border border-white/5 transition">
+                <img class="w-5 h-5 opacity-80" src="./assets/settings.png" alt="settings">
+            </button>
+        </div>
+    </header>
+
+    <!-- Sigin In Section-->
+    <div class="absolute pl-[84%] ">
+        <input type="checkbox" id="Sigin-in-toggle" class="hidden peer">
+
+        <div class="flex justify-end pr-3">
+            <label for="Sigin-in-toggle"
+                class="w-[110px] h-[40px] bg-[#1e1f22] mt-3 text-white rounded-full shadow-lg cursor-pointer hover:scale-105 transition transform duration-300 flex items-center justify-center">
+
+                <span class="text-sm font-semibold">
+                    Sigin In
+                </span>
+            </label>
+        </div>
+
+        <div class="fixed inset-0 bg-black/50 hidden peer-checked:block z-40"></div>
+
+        <!-- Popup Form -->
+
+        <div class="fixed inset-0 hidden peer-checked:flex items-center justify-center z-50">
+
+            <div class="bg-[#1e1f22] w-[90%] max-w-md p-6 rounded-2xl shadow-xl relative">
+
+                <label for="Sigin-in-toggle"
+                    class="absolute top-4 right-5 text-xl cursor-pointer text-gray-600 hover:text-black">
+                    <img class="w-4 h-4" src="./assets/close.png">
+                </label>
+
+                <h2 class="text-2xl font-bold text-center mb-4"> Sign In </h2>
+
+                <form class="bg-[#1e1f22] space-y-4">
+
+                    <input type="text" placeholder="Your User name "
+                        class="w-full border border-gray-300 bg-[#1e1f22] px-4 py-2 rounded-lg" required>
+
+                    <input type="password" placeholder="Enter The password"
+                        class="w-full border border-gray-300 px-4 py-2 rounded-lg" required>
+
+                    <div class=" flex justify-between">
+
+                        <div class="flex justify-start items-end">
+                            <button type="button"
+                                class="block text-center w-50 border border-gray-300 bg-gray-300 text-black py-2 rounded-lg hover:text-white hover:bg-black">
+                                Forget password
+                            </button>
+                        </div>
+
+                        <div class="flex justify-end mt-3 ">
+                            <button type="submit"
+                                class="w-30 bg-[#1e1f22] border border-gray-300 text-white py-2 rounded-lg hover:bg-blue-700">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+    <div>
+        <input type="checkbox" id="Sigin-up-toggle" class="hidden peer">
+
+        <div class="flex justify-end pr-3">
+            <label for="Sigin-up-toggle"
+                class="w-[110px] h-[40px] bg-[#1e1f22] mt-3 text-white rounded-full shadow-lg cursor-pointer hover:scale-105 transition transform duration-300 flex items-center justify-center">
+
+                <span class="text-sm font-semibold">
+                    Sigin Up
+                </span>
+            </label>
+        </div>
+
+        <div class="fixed inset-0 bg-black/50 hidden peer-checked:block z-40"></div>
+
+        <!-- Popup Form -->
+
+        <div class="fixed inset-0 hidden peer-checked:flex items-center justify-center z-50">
+
+            <div class="bg-[#1e1f22] w-[90%] max-w-md p-6 rounded-2xl shadow-xl relative">
+
+                <label for="Sigin-up-toggle"
+                    class="absolute top-4 right-5 text-xl cursor-pointer text-gray-600 hover:text-black">
+                    <img class="w-4 h-4" src="./assets/close.png">
+                </label>
+
+                <h2 class="text-2xl font-bold text-center mb-4"> Sign Up </h2>
+
+                <form class="bg-[#1e1f22] space-y-4">
+
+                    <input type="text" placeholder="Your User name "
+                        class="w-full border border-gray-300 bg-[#1e1f22] px-4 py-2 rounded-lg" required>
+
+                    <input type="email" placeholder="Email Address "
+                        class="w-full border border-gray-300 px-4 py-2 rounded-lg" required>
+
+                    <input type="password" placeholder="Enter The password"
+                        class="w-full border border-gray-300 px-4 py-2 rounded-lg" required>
+
+                    <div class=" flex justify-between">
+
+                        <div class="flex justify-start items-end">
+                            <button type="reset"
+                                class="block text-center w-50 border border-gray-300 bg-gray-300 text-black py-2 rounded-lg hover:text-white hover:bg-black">
+                                reset
+                            </button>
+                        </div>
+
+                        <div class="flex justify-end mt-3 ">
+                            <button type="submit"
+                                class="w-30 bg-[#1e1f22] border border-gray-300 text-white py-2 rounded-lg hover:bg-blue-700">
+                                Submit
+                            </button>
+                        </div>
+                    </div>
+                </form>
+            </div>
+        </div>
+    </div>
+
+
+
+</body>
+
+</html>
