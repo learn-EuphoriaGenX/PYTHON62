@@ -1,0 +1,119 @@
+{% include "dbase.html" %}
+{% load static %}
+
+{% block content %}
+
+<main class="min-h-screen bg-[#0a0b0f] flex items-center justify-center p-6 ">
+
+    <div class="w-full max-w-4xl absolute top-25 right-45">
+
+        <!-- Form Card -->
+        <div class="bg-[#121518] rounded-3xl shadow-2xl border border-white/5 overflow-hidden">
+
+
+            <form method="POST" enctype="multipart/form-data" class="p-8">
+                {% csrf_token %}
+
+                <div class="grid grid-cols-1 md:grid-cols-2 gap-x-8 gap-y-8">
+
+                    <!-- Name -->
+                    <div class="">
+                        <label class="block text-sm text-gray-300 mb-2 font-medium">Name:</label>
+                        <input type="text" name="car_name"
+                               class="w-full bg-[#1e1f22] border border-white/10 rounded-2xl px-5 py-3.5 text-white 
+                                      focus:outline-none focus:border-emerald-500 transition-colors"
+                               placeholder="e.g. Tesla Model Y">
+                    </div>
+
+                    <!-- Image Upload -->
+                    <div class="">
+                        <label class="block text-sm text-gray-300 mb-2 font-medium">Image:</label>
+                        <div class="flex items-center gap-4 bg-[#1e1f22] border border-white/10 rounded-2xl px-5 py-2">
+                            <label class="cursor-pointer bg-[#2a2c31] hover:bg-[#32353b] transition-colors px-6 py-2 rounded-xl text-sm font-medium">
+                                Choose File
+                                <input type="file" name="car_image" accept="image/*" class="hidden" id="carImage">
+                            </label>
+                            <span id="fileName" class="text-gray-400 text-sm">No file chosen</span>
+                        </div>
+                    </div>
+
+                    <!-- Max Speed -->
+                    <div>
+                        <label class="block text-sm text-gray-300 mb-2 font-medium">Max speed:</label>
+                        <input type="text" name="max_speed"
+                               class="w-full bg-[#1e1f22] border border-white/10 rounded-2xl px-5 py-3.5 text-white 
+                                      focus:outline-none focus:border-emerald-500 transition-colors"
+                               placeholder="250 km/h">
+                    </div>
+
+                    <!-- Engine -->
+                    <div>
+                        <label class="block text-sm text-gray-300 mb-2 font-medium">Engine:</label>
+                        <input type="text" name="car_engine"
+                               class="w-full bg-[#1e1f22] border border-white/10 rounded-2xl px-5 py-3.5 text-white 
+                                      focus:outline-none focus:border-emerald-500 transition-colors"
+                               placeholder="Dual Motor">
+                    </div>
+
+                    <!-- Charging Port -->
+                    <div>
+                        <label class="block text-sm text-gray-300 mb-2 font-medium">Charging port:</label>
+                        <input type="text" name="charging_port"
+                               class="w-full bg-[#1e1f22] border border-white/10 rounded-2xl px-5 py-3.5 text-white 
+                                      focus:outline-none focus:border-emerald-500 transition-colors"
+                               placeholder="CCS2">
+                    </div>
+
+                    <!-- Maintenance Cycle -->
+                    <div>
+                        <label class="block text-sm text-gray-300 mb-2 font-medium">Maintenance cycle:</label>
+                        <input type="text" name="maintenance_cycle"
+                               class="w-full bg-[#1e1f22] border border-white/10 rounded-2xl px-5 py-3.5 text-white 
+                                      focus:outline-none focus:border-emerald-500 transition-colors"
+                               placeholder="Every 12 months">
+                    </div>
+
+                    <!-- Seat Capacity -->
+                    <div>
+                        <label class="block text-sm text-gray-300 mb-2 font-medium">Seat capacity:</label>
+                        <input type="number" name="seat_capacity"
+                               class="w-full bg-[#1e1f22] border border-white/10 rounded-2xl px-5 py-3.5 text-white 
+                                      focus:outline-none focus:border-emerald-500 transition-colors"
+                               placeholder="5">
+                    </div>
+
+                    <!-- Audio System -->
+                    <div>
+                        <label class="block text-sm text-gray-300 mb-2 font-medium">Audio system:</label>
+                        <input type="text" name="audio_system"
+                               class="w-full bg-[#1e1f22] border border-white/10 rounded-2xl px-5 py-3.5 text-white 
+                                      focus:outline-none focus:border-emerald-500 transition-colors"
+                               placeholder="Premium Sound System">
+                    </div>
+
+                </div>
+
+                <!-- Submit Button -->
+                <button type="submit"
+                        class="w-full mt-10 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 
+                               py-4 rounded-2xl text-white font-semibold text-lg transition-all shadow-lg shadow-emerald-900/50">
+                    Add Car to Dashboard
+                </button>
+
+            </form>
+
+        </div>
+
+
+    </div>
+</main>
+
+<script>
+// Show selected filename
+document.getElementById('carImage').addEventListener('change', function() {
+    const fileName = this.files[0] ? this.files[0].name : "No file chosen";
+    document.getElementById('fileName').textContent = fileName;
+});
+</script>
+
+{% endblock content %}

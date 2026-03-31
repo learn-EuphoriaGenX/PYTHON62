@@ -1,5 +1,5 @@
 {% load static %}
-<aside class="lg:w-72 w-full bg-[#0f1114] border-r border-white/5 p-6">
+<aside class="lg:w-72 w-full bg-[#0f1114] h-[100vh] border-r border-white/5 p-6">
             <!-- profile card (compact & modern) -->
             <div class="flex flex-col items-center text-center">
                 <div class="relative">
@@ -27,13 +27,13 @@
 
             <!-- navigation menu -->
             <nav class="space-y-1">
-                <a href="#"
+                <a href="{% url "overview" %}"
                     class="flex items-center gap-3 bg-emerald-900/30 text-emerald-300 py-2.5 px-4 rounded-xl border border-emerald-800/40">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                             d="M4 6h16M4 12h16M4 18h7" />
                     </svg>
-                    <span>Overview</span>
+                    <sapan>Overview</span>
                 </a>
                 <a href="#"
                     class="flex items-center gap-3 text-gray-400 hover:text-white hover:bg-white/5 py-2.5 px-4 rounded-xl transition">
@@ -54,30 +54,32 @@
             </nav>
 
             <!-- vehicle summary card (tesla model y) integrated in sidebar for flow -->
+            {% if car.name %}
             <div
                 class="mt-8 bg-gradient-to-br from-[#1a1f24] to-[#13181d] rounded-2xl p-5 border border-white/5 card-glow">
                 <div class="flex items-center justify-between">
-                    <h3 class="font-semibold text-white">Tesla Model Y</h3>
+                    <h3 class="font-semibold text-white">{{ car.name }}</h3>
                     <span class="text-xs bg-emerald-900/50 text-emerald-300 px-2 py-1 rounded-full">charging</span>
                 </div>
                 <!-- stats grid -->
                 <div class="grid grid-cols-2 gap-3 mt-4 text-sm">
                     <div>
                         <p class="text-gray-500 text-xs">max speed</p>
-                        <p class="font-semibold text-white">340 km/h</p>
+                        <p class="font-semibold text-white">{{car.max_speed}} km/h</p>
                     </div>
                     <div>
                         <p class="text-gray-500 text-xs">engine</p>
-                        <p class="font-semibold text-white">En12 87</p>
+                        <p class="font-semibold text-white">{{car.engine}}</p>
                     </div>
                     <div>
                         <p class="text-gray-500 text-xs">maintenance</p>
-                        <p class="font-semibold text-white">Every 6 mon</p>
+                        <p class="font-semibold text-white">{{car.maintenance_cycle}}</p>
                     </div>
                     <div>
                         <p class="text-gray-500 text-xs">audio</p>
-                        <p class="font-semibold text-white">Sony 325i</p>
+                        <p class="font-semibold text-white">{{car.audio_system}}</p>
                     </div>
                 </div>
             </div>
+            {% endif %}
         </aside>
