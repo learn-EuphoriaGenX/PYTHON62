@@ -10,13 +10,13 @@
         <!-- header -->
         <div class="flex items-center justify-between mb-4">
             <div class="flex items-center gap-3">
-                <button
+            <a href="?{% if prev_car %}id={{ prev_car.id }}{% endif %}"
                 class="w-10 h-10 rotate-180 bg-emerald-600 hover:bg-emerald-500 rounded-xl flex items-center justify-center transition shadow-lg shadow-emerald-900/30">
                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5"
                         viewBox="0 0 24 24">
                         <path d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
-            </button>
+                </a>
             <!-- car name -->
             <h2 class="text-2xl font-semibold text-white ">
                 {{ car.name }}
@@ -30,13 +30,13 @@
                 + add new
             </button>
                </a>
-            <button
+            <a href="?{% if next_car %}id={{ next_car.id }}{% endif %}"
                 class="w-10 h-10 bg-emerald-600 hover:bg-emerald-500 rounded-xl flex items-center justify-center transition shadow-lg shadow-emerald-900/30">
                     <svg class="w-5 h-5 text-white" fill="none" stroke="currentColor" stroke-width="2.5"
                         viewBox="0 0 24 24">
                         <path d="M14 5l7 7m0 0l-7 7m7-7H3" />
                     </svg>
-            </button>
+            </a>
             </div>
         </div>
 
@@ -54,7 +54,7 @@
 
 
             <!-- car image -->
-            <img src="{{car.image.url}}" class="relative z-10 w-[330px] h-[320px] object-contain">
+            <img src="{{car.image.url}}" class="relative z-10 w-[320px] h-[270px] object-cover">
         </div>
 
 

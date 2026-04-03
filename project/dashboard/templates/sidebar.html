@@ -3,15 +3,22 @@
             <!-- profile card (compact & modern) -->
             <div class="flex flex-col items-center text-center">
                 <div class="relative">
-                    <img src="{% static "./assets/default.png" %}" alt="profile"
+                    {% if user.profile_picture %}
+                        <img src="{{user.profile_picture.url}}" alt="profile"
                         class="w-28 h-28 rounded-full border-2 border-emerald-700/40 shadow-lg">
+                    {% else %}
+                        <img src={% static "./assets/default.png" %} alt="profile"
+                        class="w-28 h-28 rounded-full border-2 border-emerald-700/40 shadow-lg">
+                    {% endif %}
                     <span
                         class="absolute bottom-2 right-2 w-4 h-4 bg-emerald-500 border-2 border-[#0f1114] rounded-full"></span>
                 </div>
                 <h2 class="mt-4 text-xl font-semibold text-white">{{user.username}}</h2>
 
                 <!-- quick stats -->
-                <div class="flex justify-center gap-4 mt-4 w-full text-xs">
+
+                {% if not user.is_superuser %}
+                    <div class="flex justify-center gap-4 mt-4 w-full text-xs">
                     <div class="bg-[#1a1d21] py-2 px-3 rounded-lg">
                         <p class="text-gray-500">bookings</p>
                         <p class="text-white font-medium">18</p>
@@ -21,6 +28,9 @@
                         <p class="text-white font-medium">1</p>
                     </div>
                 </div>
+                {% endif %}
+
+
             </div>
 
             <hr class="border-white/5 my-6">
@@ -33,9 +43,29 @@
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
                             d="M4 6h16M4 12h16M4 18h7" />
                     </svg>
-                    <sapan>Overview</span>
+                    <sapan>
+                        {% if user.is_superuser %}Cars{% else %}Overview{% endif %}
+                    </span>
+                </a>
+                {% if user.is_superuser  %}
+                <a href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white hover:bg-white/5 py-2.5 px-4 rounded-xl transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                            d="M13 10V3L4 14h7v7l9-11h-7z" />
+                    </svg>
+                    <span>Add Slots</span>
                 </a>
                 <a href="#"
+                    class="flex items-center gap-3 text-gray-400 hover:text-white hover:bg-white/5 py-2.5 px-4 rounded-xl transition">
+                    <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
+                            d="M9 5H7a2 2 0 00-2 2v12a2 2 0 002 2h10a2 2 0 002-2V7a2 2 0 00-2-2h-2M9 5a2 2 0 002 2h2a2 2 0 002-2M9 5a2 2 0 012-2h2a2 2 0 012 2" />
+                    </svg>
+                    <span>View Slots</span>
+                </a>
+                {% else %}
+                    <a href="#"
                     class="flex items-center gap-3 text-gray-400 hover:text-white hover:bg-white/5 py-2.5 px-4 rounded-xl transition">
                     <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
                         <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1.8"
@@ -51,6 +81,7 @@
                     </svg>
                     <span>Service history</span>
                 </a>
+                {% endif %}
             </nav>
 
             <!-- vehicle summary card (tesla model y) integrated in sidebar for flow -->

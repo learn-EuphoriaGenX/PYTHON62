@@ -9,16 +9,30 @@ from .models import Car
 def Overview(request):
     id = request.GET.get('id')
     car = None
-    if id:
-        car = Car.objects.filter(id=id, user=request.user).first()
+    
+    if request.user.is_superuser:
+        if id:
+            car = Car.objects.filter(id=id).first()
+        else:
+            car = Car.objects.first()
     else:
-        car = Car.objects.filter(user=request.user).first()
+        if id:
+            car = Car.objects.filter(id=id, user=request.user).first()
+        else:
+            car = Car.objects.filter(user=request.user).first()
     
 
     if not car:
         messages.info(request, "No cars found. Please add a car to view the overview.")
         return redirect('add-car')
-    return render(request, 'overview.html', {'car': car})
+    
+    if request.user.is_superuser:
+        prev_car = Car.objects.filter(id__lt=car.id).order_by('-id').first()
+        next_car = Car.objects.filter(id__gt=car.id).order_by('id').first()
+    else:
+        prev_car = Car.objects.filter(user=request.user, id__lt=car.id).order_by('-id').first()
+        next_car = Car.objects.filter(user=request.user, id__gt=car.id).order_by('id').first()
+    return render(request, 'overview.html', {'car': car, 'prev_car': prev_car, 'next_car': next_car})
 
 @login_required(login_url='login')
 def Add_car(request):
