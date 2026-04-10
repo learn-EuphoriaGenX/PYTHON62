@@ -1,0 +1,202 @@
+{% extends "dbase.html" %}
+
+{% block title %}
+Admin | Add New Slot
+{% endblock title %}
+
+{% block content %}
+  <div class="w-full mx-auto p-8">
+
+    <!-- Form Card -->
+    <div class="bg-zinc-900 border border-zinc-800 rounded-3xl shadow-2xl overflow-hidden">
+
+      <!-- Header -->
+      <div class="bg-zinc-950 border-b border-zinc-800 px-8 py-6 flex items-center gap-4">
+        <div>
+          <h1 class="text-2xl font-semibold text-white">Add New Charging Station</h1>
+          <p class="text-zinc-400 text-sm">Register a new EV charging slot in the network</p>
+        </div>
+      </div>
+
+      <div class="p-8 md:p-10">
+        <form id="chargingForm" method="POST" class="space-y-8">
+            {% csrf_token %}
+          <!-- Main Two Column Layout -->
+          <div class="grid grid-cols-1 lg:grid-cols-2 gap-10">
+
+            <!-- LEFT COLUMN: Station Name & Address -->
+            <div class="space-y-7">
+              <!-- Station Name -->
+              <div>
+                <label class="block text-sm font-medium text-zinc-400 mb-2">Station Name</label>
+                <input 
+                  type="text" 
+                  name="station_name"
+                  id="name"
+                  class="w-full bg-zinc-950 border border-zinc-700 rounded-2xl px-5 py-4 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-all duration-200"
+                  placeholder="e.g. GreenPark Supercharger">
+              </div>
+
+              <!-- Address -->
+              <div class=>
+                <label class="block text-sm font-medium text-zinc-400 mb-2">Address</label>
+                <textarea 
+                  id="address"
+                  name="address"
+                  rows="1"
+                  class="w-full bg-zinc-950 border border-zinc-700 rounded-2xl px-5 py-4 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-all duration-200 resize-none"
+                  placeholder="123 EV Street, Sector 5, Kolkata"></textarea>
+              </div>
+
+               <!-- Latitude & Longitude -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-zinc-400 mb-2">Latitude</label>
+                  <input 
+                    type="text" 
+                    id="latitude"
+                    name="latitude"
+                    readonly
+                    class="w-full bg-zinc-950 border border-zinc-700 rounded-2xl px-5 py-4 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-all duration-200"
+                    placeholder="22.5726">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-zinc-400 mb-2">Longitude</label>
+                  <input 
+                    type="text" 
+                    id="longitude"
+                    name="longitude"
+                    readonly
+                    class="w-full bg-zinc-950 border border-zinc-700 rounded-2xl px-5 py-4 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-all duration-200"
+                    placeholder="88.3639">
+                </div>
+              </div>
+            </div>
+
+            <!-- RIGHT COLUMN: Other Details -->
+            <div class="space-y-8">
+
+              <!-- Row 1: City + Port Number -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-zinc-400 mb-2">City</label>
+                  <input 
+                    type="text" 
+                    id="city"
+                    name="city"
+                    class="w-full bg-zinc-950 border border-zinc-700 rounded-2xl px-5 py-4 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-all duration-200"
+                    placeholder="Kolkata">
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-zinc-400 mb-2">Port Number</label>
+                  <input 
+                    type="number" 
+                    id="port"
+                    name="port"
+                    class="w-full bg-zinc-950 border border-zinc-700 rounded-2xl px-5 py-4 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-all duration-200"
+                    placeholder="4">
+                </div>
+              </div>
+
+              <!-- Row 2: Charger Type + Charging Type -->
+              <div class="grid grid-cols-1 sm:grid-cols-2 gap-6">
+                <div>
+                  <label class="block text-sm font-medium text-zinc-400 mb-2">Charger Type</label>
+                  <select 
+                    id="chargerType"
+                    name="chargerType"
+                    class="w-full bg-zinc-950 border border-zinc-700 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-emerald-500 transition-all duration-200">
+                    <option value="">Select Type</option>
+                    <option value="Level 1">Level 1 (Slow)</option>
+                    <option value="Level 2">Level 2 (AC)</option>
+                    <option value="DC Fast">DC Fast Charger</option>
+                    <option value="Ultra Fast">Ultra Fast (350kW+)</option>
+                  </select>
+                </div>
+                <div>
+                  <label class="block text-sm font-medium text-zinc-400 mb-2">Charging Type</label>
+                  <select 
+                    id="chargingType"
+                    name="chargingType"
+                    class="w-full bg-zinc-950 border border-zinc-700 rounded-2xl px-5 py-4 text-white focus:outline-none focus:border-emerald-500 transition-all duration-200">
+                    <option value="">Select Type</option>
+                    <option value="Ultra Fast">Ultra Fast</option>
+                    <option value="Fast">Fast</option>
+                    <option value="Slow">Slow</option>
+                    <option value="Standard">Standard</option>
+                  </select>
+                </div>
+              </div>
+
+              <!-- Price -->
+              <div>
+                <label class="block text-sm font-medium text-zinc-400 mb-2">Price per kWh (₹)</label>
+                <div class="relative">
+                  <div class="absolute left-5 top-1/2 -translate-y-1/2 text-emerald-400 font-semibold">₹</div>
+                  <input 
+                    type="number" 
+                    id="price"
+                    name="price"
+                    step="0.01"
+                    class="w-full bg-zinc-950 border border-zinc-700 rounded-2xl px-12 py-4 text-white placeholder-zinc-500 focus:outline-none focus:border-emerald-500 transition-all duration-200"
+                    placeholder="8.50">
+                </div>
+              </div>
+
+             
+
+              
+
+            </div>
+          </div>
+
+          <!-- Submit Button -->
+          <button 
+            type="submit"
+            class="w-full mt-10 bg-emerald-600 hover:bg-emerald-500 active:bg-emerald-700 transition-all duration-200 text-white font-semibold py-3 rounded-xl text-lg flex items-center justify-center gap-3 group">
+            <i class="fa-solid fa-bolt group-active:rotate-12 transition-transform"></i>
+            Register Charging Station
+          </button>
+
+        </form>
+      </div>
+    </div>
+  </div>
+
+  <!-- JavaScript for GPS -->
+  <script>
+    function getCurrentLocation() {
+        document.getElementById('latitude').value = "latitude...";
+        document.getElementById('longitude').value = "longitude...";
+        document.getElementById('address').value = "Fetching address...";
+        document.getElementById('city').value = "Fetching city...";
+      if (navigator.geolocation) {
+        navigator.geolocation.getCurrentPosition(
+          async (position) => {
+            document.getElementById('latitude').value = position.coords.latitude.toFixed(6);
+            document.getElementById('longitude').value = position.coords.longitude.toFixed(6);
+
+            let api_url = `https://nominatim.openstreetmap.org/reverse?format=jsonv2&lat=${position.coords.latitude}&lon=${position.coords.longitude}`;
+            let response = await fetch(api_url);
+            let data = await response.json();
+            if (data && data.display_name) {
+              document.getElementById('address').value = data.display_name;
+            }
+            if (data && data.address) {
+              const city = data.address.city || data.address.town || data.address.village || '';
+              document.getElementById('city').value = city;
+            }
+
+           
+          },
+          (error) => {
+            alert("Unable to fetch location. Please allow location access or enter manually.");
+          }
+        );
+      } else {
+        alert("Geolocation is not supported by this browser.");
+      }
+    }
+    getCurrentLocation();
+  </script>
+{% endblock content %}

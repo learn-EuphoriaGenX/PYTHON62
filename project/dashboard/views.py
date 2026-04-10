@@ -2,7 +2,7 @@ from django.shortcuts import render, redirect
 from .models import Car
 from django.contrib.auth.decorators import login_required
 from django.contrib import messages
-from .models import Car, Booking
+from .models import Car, Booking, ChargingPort, ChargingStation
 
 # Create your views here.
 @login_required(login_url='login')
@@ -81,3 +81,44 @@ def ServiceHistory(request):
 def Notifications(request):
     pass
 
+def AddSlots(request):
+    if request.method == 'POST':
+        station_name = request.POST.get('station_name')
+        address = request.POST.get('address')
+        latitude = request.POST.get('latitude')
+        longitude = request.POST.get('longitude')
+        city = request.POST.get('city')
+        port_number = request.POST.get('port')
+        charger_type = request.POST.get('chargerType')
+        charging_type = request.POST.get('chargingType')
+        price = request.POST.get('price')
+
+        if station_name and address and latitude and longitude and city and port_number and charger_type and charging_type and price:
+            
+            new_station = ChargingStation(
+                name=station_name,
+                address=address,
+                city=city,
+                lat=latitude,
+                lng=longitude
+            )
+            new_station.save()
+            new_port = ChargingPort(
+                station=new_station,
+                port_number=port_number,
+                charger_type=charger_type,
+                charging_type=charging_type,
+                price_per_kwh=price
+            )
+            new_port.save()
+            messages.success(request, "Slot added successfully!")
+            return redirect('add-slots')
+        else:
+            messages.error(request, "Please fill in all fields.")
+            return redirect('add-slots')
+
+      
+    return render(request, 'add-slot.html', {'as_is_active':True})
+
+def AllSlots(request):
+    return render(request, 'all-slots.html', {'vs_is_active':True})
